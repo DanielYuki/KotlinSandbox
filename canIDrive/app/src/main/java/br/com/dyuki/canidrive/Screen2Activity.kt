@@ -2,10 +2,12 @@ package br.com.dyuki.canidrive
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_screen2.*
 
 class Screen2Activity : AppCompatActivity() {
@@ -19,10 +21,10 @@ class Screen2Activity : AppCompatActivity() {
         txvName.text = "Welcome $name"
 
         //Age Array => (Spinner Content)
-        val ageArray = arrayListOf<Int>()
+        val ageArray = arrayListOf("Ages", 1)
 
         //Creating Spinner Content
-        for (anAge in 1..100) {
+        for (anAge in 2..100) {
             //Adding Content to Array
             ageArray.add(anAge)
         }
@@ -33,6 +35,28 @@ class Screen2Activity : AppCompatActivity() {
         //Insert Adapted Array => Spinner
         spnAges.adapter = adaptedArray as SpinnerAdapter?
 
+        //Verify and Validator
+        btnVerify.setOnClickListener {
+            val ageSelected = spnAges.selectedItem
+
+            if (ageSelected != String){
+                ageSelected as Int
+                if (ageSelected >= 18){
+                    txvResult.text = "Deja Vu"
+                }else if (ageSelected == 100){
+                    txvResult.text = "Rly ???"
+                }else{
+                    txvResult.text = "No Deja Vu"
+                }
+            }else{
+                Toast.makeText(this, "R u Stupid ?", Toast.LENGTH_LONG).show()
+            }
+        }
+
+
+
+        /*
+        GAMBIARRA 10000
         var response = ""
 
         //Select Spinner Item
@@ -62,5 +86,8 @@ class Screen2Activity : AppCompatActivity() {
         btnVerify.setOnClickListener {
             txvResult.text = response
         }
+
+        */
     }
+
 }
