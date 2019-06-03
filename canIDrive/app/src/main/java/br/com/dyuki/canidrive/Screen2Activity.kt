@@ -1,5 +1,6 @@
 package br.com.dyuki.canidrive
 
+import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -39,17 +40,21 @@ class Screen2Activity : AppCompatActivity() {
         btnVerify.setOnClickListener {
             val ageSelected = spnAges.selectedItem
 
-            if (ageSelected != String){
+            if (ageSelected != "Ages"){
                 ageSelected as Int
                 if (ageSelected >= 18){
+                    showAlert("Deja Vu")
                     txvResult.text = "Deja Vu"
                 }else if (ageSelected == 100){
+                    showAlert("The Legend")
                     txvResult.text = "Rly ???"
                 }else{
-                    txvResult.text = "No Deja Vu"
+                    showAlert("No Deja Vu 4U")
+                    txvResult.text = "No Deja Vu 4U"
                 }
             }else{
-                Toast.makeText(this, "R u Stupid ?", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "R u Stupid ?", Toast.LENGTH_LONG).show()
+                showAlert("R u Stupid ?")
             }
         }
 
@@ -90,4 +95,21 @@ class Screen2Activity : AppCompatActivity() {
         */
     }
 
+    //Alarm Function
+    private fun showAlert(message: String){
+        //Alarm
+        AlertDialog.Builder(this)
+            .setIcon(R.mipmap.ic_launcher_round)
+            .setTitle("Deja Vu!!!")
+            .setMessage(message)
+            .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+                //TO DO...
+            })
+            .setNeutralButton("Cancel", null)
+            .setNegativeButton("Exit", DialogInterface.OnClickListener { dialog, which ->
+                finish()
+            })
+            .create()
+            .show()
+    }
 }
