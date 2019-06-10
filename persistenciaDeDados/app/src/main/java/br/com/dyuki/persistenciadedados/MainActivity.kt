@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             R.id.btnResgatar -> {
-
+                txvResultado.text = minhaPreferencia.getString("dado","Não informado")
             }
         }
 
