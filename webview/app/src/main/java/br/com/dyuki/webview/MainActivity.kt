@@ -10,8 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var search = intent.getStringExtra("search")
+        var url = "https://www.${search}.com/"
+
         wbvBrowser.settings.javaScriptEnabled = true
-        wbvBrowser.loadUrl("https://theuselessweb.com/")
+        wbvBrowser.loadUrl(url)
 
     }
 }
